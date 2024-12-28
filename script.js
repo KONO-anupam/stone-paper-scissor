@@ -65,6 +65,9 @@ scissor.addEventListener("click",()=>{playRound("scissor")})
         }
      
 roundsPlayed++;
+ let roundsInfo=document.createElement('p');
+ document.body.appendChild(roundsInfo);
+ roundsInfo.textContent=`Round:${roundsPlayed+1} out of 5`;
 if(roundsPlayed>5){
     const finalResult=playerScore>compScore?'CONGRATS U WON':'LOL U LOST';
     resultt.textContent=`GAME OVER!!!  ${finalResult} Your score-${playerScore},Opponent's score-${compScore}`
