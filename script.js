@@ -31,7 +31,7 @@ scissor.addEventListener("click",()=>{playRound("scissor")})
             return'scissor';
      } 
     }
-
+   let roundsPlayed=0;
     function playRound(playerChoice){
         opp = getCompChoice();
         const compChoice=document.createElement("p");
@@ -64,8 +64,16 @@ scissor.addEventListener("click",()=>{playRound("scissor")})
             compScore++;
         }
      
+roundsPlayed++;
+if(roundsPlayed>5){
+    const finalResult=playerScore>compScore?'CONGRATS U WON':'LOL U LOST';
+    resultt.textContent=`GAME OVER!!!  ${finalResult} Your score-${playerScore},Opponent's score-${compScore}`
+    return;
+}
+    }
 
-    }} 
+    
 
+    
 
 
