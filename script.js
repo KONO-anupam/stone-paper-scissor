@@ -3,12 +3,23 @@ let playerScore=0;
 let compScore=0;
 
 const stone=document.createElement("button");
+stone.textContent='stone';
 const paper=document.createElement("button");
+paper.textContent='paper';
 const scissor=document.createElement("button");
+scissor.textContent='scissor';
 const resultt=document.createElement("div");
+let roundsInfo=document.createElement('p');
+const compChoice=document.createElement("p");
+const reset=document.createElement("button");
+reset.textContent="PLAY AGAIN"
+   document.body.appendChild(roundsInfo);
 document.body.appendChild(stone);
 document.body.appendChild(paper);
 document.body.appendChild(scissor);
+
+document.body.appendChild(compChoice);
+
 document.body.appendChild(resultt);
 
 
@@ -32,11 +43,10 @@ scissor.addEventListener("click",()=>{playRound("scissor")})
      } 
     }
    let roundsPlayed=0;
+   document.body.appendChild(compChoice);
     function playRound(playerChoice){
         opp = getCompChoice();
-        const compChoice=document.createElement("p");
          compChoice.textContent=`The opponent chose ${opp}`
-         resultt.appendChild(compChoice);
          if(opp==='paper'&& playerChoice==='scissor'){
             resultt.textContent= 'u win';
             playerScore++;
@@ -65,14 +75,28 @@ scissor.addEventListener("click",()=>{playRound("scissor")})
         }
      
 roundsPlayed++;
- let roundsInfo=document.createElement('p');
- document.body.appendChild(roundsInfo);
- roundsInfo.textContent=`Round:${roundsPlayed+1} out of 5`;
-if(roundsPlayed>5){
+roundsInfo.textContent=`Round:${roundsPlayed} out of 5`;
+if(roundsPlayed>=5){
     const finalResult=playerScore>compScore?'CONGRATS U WON':'LOL U LOST';
     resultt.textContent=`GAME OVER!!!  ${finalResult} Your score-${playerScore},Opponent's score-${compScore}`
+    stone.disabled=true;
+    paper.disabled=true;
+    scissor.disabled=true;
+    document.body.appendChild(reset)
+    reset.onclick=()=>{
+        playerScore=0;
+        compScore=0;
+        roundsPlayed=0
+        compChoice.textContent='';
+        resultt.textContent='';
+        stone.disabled=false;
+        paper.disabled=false;
+        scissor.disabled=false;
+    }
     return;
 }
+
+
     }
 
     
